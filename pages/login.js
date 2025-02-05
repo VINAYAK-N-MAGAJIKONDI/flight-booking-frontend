@@ -2,6 +2,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
+import Link from 'next/link';
+import styles from '@/styles/Form.module.css';
 
 export default function Login() {
   const router = useRouter();
@@ -36,10 +38,10 @@ export default function Login() {
   };
 
   return (
-    <div>
-      <h1>Login</h1>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <form onSubmit={handleLogin}>
+    <div className={styles.container}>
+      <h1 className={styles.title}>Login</h1>
+      {error && <p className={styles.error}>{error}</p>}
+      <form onSubmit={handleLogin} className={styles.form}>
         <label>Email:</label>
         <input
           type="email"
@@ -47,7 +49,6 @@ export default function Login() {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        <br />
         <label>Password:</label>
         <input
           type="password"
@@ -55,9 +56,9 @@ export default function Login() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <br />
-        <button type="submit">Login</button>
+        <button type="submit" className={styles.button}>Login</button>
       </form>
+      <p>Don't have an account? <Link href="/register">Register</Link></p>
     </div>
   );
 }

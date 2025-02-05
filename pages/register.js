@@ -1,6 +1,8 @@
 // pages/register.js
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
+import styles from '@/styles/Form.module.css';
 
 export default function Register() {
   const router = useRouter();
@@ -33,10 +35,10 @@ export default function Register() {
   };
 
   return (
-    <div>
-      <h1>Register</h1>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <form onSubmit={handleRegister}>
+    <div className={styles.container}>
+      <h1 className={styles.title}>Register</h1>
+      {error && <p className={styles.error}>{error}</p>}
+      <form onSubmit={handleRegister} className={styles.form}>
         <label>Name:</label>
         <input
           type="text"
@@ -44,7 +46,6 @@ export default function Register() {
           onChange={(e) => setName(e.target.value)}
           required
         />
-        <br />
         <label>Email:</label>
         <input
           type="email"
@@ -52,7 +53,6 @@ export default function Register() {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        <br />
         <label>Password:</label>
         <input
           type="password"
@@ -60,9 +60,9 @@ export default function Register() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <br />
-        <button type="submit">Register</button>
+        <button type="submit" className={styles.button}>Register</button>
       </form>
+      <p>Already have an account? <Link href="/login">Login</Link></p>
     </div>
   );
 }

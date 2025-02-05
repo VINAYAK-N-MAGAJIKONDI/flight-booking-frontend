@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
+import Link from 'next/link';
+import styles from '@/styles/Search.module.css';
 
 export default function SearchFlights() {
   const [airports, setAirports] = useState([]);
@@ -58,9 +60,9 @@ export default function SearchFlights() {
   };
 
   return (
-    <div>
-      <h1>Search Flights</h1>
-      <form onSubmit={searchFlights}>
+    <div className={styles.container}>
+      <h1 className={styles.title}>Search Flights</h1>
+      <form onSubmit={searchFlights} className={styles.form}>
         <label>Departure Airport:</label>
         <select value={departure} onChange={(e) => setDeparture(e.target.value)} required>
           <option value="">Select Airport</option>
@@ -84,14 +86,14 @@ export default function SearchFlights() {
         <label>Date:</label>
         <input type="date" value={date} onChange={(e) => setDate(e.target.value)} required />
 
-        <button type="submit">Search</button>
+        <button type="submit" className={styles.button}>Search</button>
       </form>
 
-      <h2>Available Flights</h2>
-      <ul>
+      <h2 className={styles.subtitle}>Available Flights</h2>
+      <ul className={styles.flightList}>
         {flights.length > 0 ? (
           flights.map((flight) => (
-            <li key={flight.flightId} onClick={() => setSelectedFlight(flight)} style={{ cursor: "pointer", border: "1px solid gray", padding: "10px", margin: "5px" }}>
+            <li key={flight.flightId} onClick={() => setSelectedFlight(flight)} className={styles.flightItem}>
               {flight.flightNumber} - {flight.departureAirportName} to {flight.arrivalAirportName} - ₹{flight.price}
             </li>
           ))
@@ -101,14 +103,15 @@ export default function SearchFlights() {
       </ul>
 
       {selectedFlight && (
-        <div>
+        <div className={styles.confirmation}>
           <h3>Confirm Booking for {selectedFlight.flightNumber}</h3>
-          <button onClick={bookFlight}>Book Flight</button>
-          <button onClick={() => setSelectedFlight(null)}>Cancel</button>
+          <button onClick={bookFlight} className={styles.button}>Book Flight</button>
+          <button onClick={() => setSelectedFlight(null)} className={styles.button}>Cancel</button>
         </div>
       )}
 
-      {message && <p>{message}</p>}
+      {message && <p className={styles.message}>{message}</p>}
+      <Link href="/dashboard">Back to Dashboard</Link>
     </div>
   );
 }

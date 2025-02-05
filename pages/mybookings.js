@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
+import Link from 'next/link';
+import styles from '@/styles/Bookings.module.css';
 
 export default function MyBookings() {
   const [bookings, setBookings] = useState([]);
@@ -84,16 +86,16 @@ export default function MyBookings() {
   };
 
   return (
-    <div>
-      <h1>My Bookings</h1>
+    <div className={styles.container}>
+      <h1 className={styles.title}>My Bookings</h1>
       {loading ? (
         <p>Loading...</p>
       ) : message ? (
         <p>{message}</p>
       ) : bookings.length > 0 ? (
-        <ul>
+        <ul className={styles.bookingList}>
           {bookings.map((booking) => (
-            <li key={booking.flightId} style={{ border: "1px solid gray", padding: "10px", margin: "5px" }}>
+            <li key={booking.flightId} className={styles.bookingItem}>
               <p>Flight Number: {booking.flightNumber}</p>
               <p>From: {booking.departureAirportName} → To: {booking.arrivalAirportName}</p>
               <p>Departure: {new Date(booking.departureTime).toLocaleString()}</p>
@@ -101,27 +103,23 @@ export default function MyBookings() {
               <p>Price: ₹{booking.price}</p>
               {booking.seatNumber === "NA" ? (
                 <>
-                  <button onClick={() => fetchSeats(booking.flightId)}>Check-in</button>
+                  <button onClick={() => fetchSeats(booking.flightId)} className={styles.button}>Check-in</button>
                   {selectedFlight === booking.flightId && (
-                    <div>
+                    <div className={styles.seatSelection}>
                       <h3>Select a Seat</h3>
-                      <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: "5px" }}>
+                      <div className={styles.seatGrid}>
                         {seats.map((seat) => (
                           <button
                             key={seat.seatNumber}
                             disabled={!seat.isAvailable}
                             onClick={() => setSelectedSeat(seat.seatNumber)}
-                            style={{
-                              backgroundColor: selectedSeat === seat.seatNumber ? "green" : seat.isAvailable ? "white" : "gray",
-                              padding: "10px",
-                              border: "1px solid black",
-                            }}
+                            className={`${styles.seatButton} ${selectedSeat === seat.seatNumber ? styles.selectedSeat : ''}`}
                           >
                             {seat.seatNumber}
                           </button>
                         ))}
                       </div>
-                      <button onClick={() => handleCheckIn(booking.flightId, booking.bookingId)}>Confirm Check-in</button>
+                      <button onClick={() => handleCheckIn(booking.flightId, booking.bookingId)} className={styles.button}>Confirm Check-in</button>
                     </div>
                   )}
                 </>
@@ -134,7 +132,8 @@ export default function MyBookings() {
       ) : (
         <p>No bookings found.</p>
       )}
-      <button onClick={() => router.push("/search")}>Search More Flights</button>
+      <button onClick={() => router.push("/search")} className={styles.button}>Search More Flights</button>
+      <Link href="/dashboard">Back to Dashboard</Link>
     </div>
   );
 }

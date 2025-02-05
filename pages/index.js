@@ -1,16 +1,17 @@
 // pages/index.js
 import Link from 'next/link';
+import styles from '@/styles/Home.module.css';
 
 export default function Home() {
   return (
-    <div>
-      <h1>Welcome to the Flight Booking System!</h1>
-      <nav>
-        <ul>
-          <li>
+    <div className={styles.container}>
+      <h1 className={styles.title}>Welcome to the Flight Booking System!</h1>
+      <nav className={styles.nav}>
+        <ul className={styles.navList}>
+          <li className={styles.navItem}>
             <Link href="/login">Login</Link>
           </li>
-          <li>
+          <li className={styles.navItem}>
             <Link href="/register">Register</Link>
           </li>
         </ul>

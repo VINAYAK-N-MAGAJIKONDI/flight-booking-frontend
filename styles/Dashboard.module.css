@@ -1,0 +1,59 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.userDetails {
+  text-align: center;
+}
+
+.userDetails p {
+  margin: 10px 0;
+}
+
+.button {
+  padding: 10px;
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.button:hover {
+  background-color: #005bb5;
+}
+
+.nav {
+  margin-top: 20px;
+}
+
+.navList {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+}
+
+.navItem {
+  display: inline;
+  margin: 0 10px;
+}
+
+.navItem a {
+  text-decoration: none;
+  color: #f34d00;
+}
+
+.navItem a:hover {
+  text-decoration: underline;
+}

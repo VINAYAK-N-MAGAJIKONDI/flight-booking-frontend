@@ -2,6 +2,8 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
+import Link from 'next/link';
+import styles from '@/styles/Dashboard.module.css';
 
 export default function Dashboard() {
   const router = useRouter();
@@ -54,13 +56,23 @@ export default function Dashboard() {
   if (loading) return <p>Loading...</p>;
 
   return (
-    <div>
-      <h1>Dashboard</h1>
+    <div className={styles.container}>
+      <h1 className={styles.title}>Dashboard</h1>
       {user ? (
-        <div>
+        <div className={styles.userDetails}>
           <p>Welcome, {user.name}</p>
           <p>Email: {user.email}</p>
-          <button onClick={handleLogout}>Logout</button>
+          <button onClick={handleLogout} className={styles.button}>Logout</button>
+          <nav className={styles.nav}>
+            <ul className={styles.navList}>
+              <li className={styles.navItem}>
+                <Link href="/search">Search Flights</Link>
+              </li>
+              <li className={styles.navItem}>
+                <Link href="/mybookings">My Bookings</Link>
+              </li>
+            </ul>
+          </nav>
         </div>
       ) : (
         <p>Unauthorized access. Redirecting...</p>

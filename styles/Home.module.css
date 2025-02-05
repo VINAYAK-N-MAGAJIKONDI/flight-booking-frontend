@@ -108,6 +108,39 @@ a.secondary {
   flex-shrink: 0;
 }
 
+.container {
+  text-align: center;
+  padding: 20px;
+}
+
+.title {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.nav {
+  margin-top: 20px;
+}
+
+.navList {
+  list-style: none;
+  padding: 0;
+}
+
+.navItem {
+  display: inline;
+  margin: 0 10px;
+}
+
+.navItem a {
+  text-decoration: none;
+  color: #0070f3;
+}
+
+.navItem a:hover {
+  text-decoration: underline;
+}
+
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   a.primary:hover {
