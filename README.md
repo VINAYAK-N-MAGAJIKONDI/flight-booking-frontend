@@ -1,4 +1,43 @@
+# Flight Booking System
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+
+## Overview
+
+The Flight Booking System is a web application that allows users to search for flights, book them, and manage their bookings. The app includes user authentication, flight search, booking, and check-in functionalities.
+
+## Features
+
+- User Registration and Login
+- Search for Flights
+- Book Flights
+- View and Manage Bookings
+- Check-in and Select Seats
+
+## Screenshots
+
+### Home Page
+![Home Page](screenshots/welcome.png)
+
+### Registration Page
+![Registration Page](screenshots/register.png)
+
+### Login Page
+![Login Page](screenshots/login.png)
+
+### Dashboard
+![Dashboard](screenshots/dashboard.png)
+
+### Search Flights
+![Search Flights](screenshots/search.png)
+![Search Flights](screenshots/search2.png)
+![Search Flights](screenshots/search%20(3).png)
+### My Bookings
+![My Bookings](screenshots/bookings.png)
+
+### Check-in
+![Check-in](screenshots/checkin%20(1).png)
+![Check-in](screenshots/checkin%20(2).png)
 
 ## Getting Started
 
