@@ -1,7 +1,7 @@
 /* Global Styles */
 body {
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #002f65, #00232b);
+  background: url('../screenshots/896981.jpg') no-repeat center center/cover;
   color: #fff;
   margin: 0;
   padding: 0;
@@ -16,7 +16,7 @@ body {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(6, 92, 102, 0.427);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);

@@ -5,6 +5,7 @@
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: rgba(1, 38, 39, 0.468);
 }
 
 .title {
@@ -52,6 +53,7 @@
 .navItem a {
   text-decoration: none;
   color: #f34d00;
+  background-color: aquamarine;
 }
 
 .navItem a:hover {
