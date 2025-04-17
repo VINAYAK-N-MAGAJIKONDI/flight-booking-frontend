@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
-import Link from 'next/link';
-import styles from '@/styles/Bookings.module.css';
+import Link from "next/link";
+import styles from "@/styles/Bookings.module.css";
 
 export default function MyBookings() {
   const [bookings, setBookings] = useState([]);
+  const [upcomingTrips, setUpcomingTrips] = useState([]);
+  const [pastTrips, setPastTrips] = useState([]);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
   const [selectedFlight, setSelectedFlight] = useState(null);
@@ -28,7 +30,15 @@ export default function MyBookings() {
         });
         const data = await response.json();
         if (response.ok) {
-          setBookings(data);
+          const currentDate = new Date();
+          const upcoming = data.filter(
+            (booking) => new Date(booking.departureTime) > currentDate
+          );
+          const past = data.filter(
+            (booking) => new Date(booking.departureTime) <= currentDate
+          );
+          setUpcomingTrips(upcoming);
+          setPastTrips(past);
         } else {
           setMessage(data.error || "Failed to fetch bookings.");
         }
@@ -72,7 +82,7 @@ export default function MyBookings() {
       if (response.ok) {
         alert(data.message);
         setSelectedFlight(null);
-        setBookings((prev) =>
+        setUpcomingTrips((prev) =>
           prev.map((booking) =>
             booking.bookingId === bookingId ? { ...booking, seatNumber: selectedSeat } : booking
           )
@@ -92,48 +102,77 @@ export default function MyBookings() {
         <p>Loading...</p>
       ) : message ? (
         <p>{message}</p>
-      ) : bookings.length > 0 ? (
-        <ul className={styles.bookingList}>
-          {bookings.map((booking) => (
-            <li key={booking.flightId} className={styles.bookingItem}>
-              <p>Flight Number: {booking.flightNumber}</p>
-              <p>From: {booking.departureAirportName} → To: {booking.arrivalAirportName}</p>
-              <p>Departure: {new Date(booking.departureTime).toLocaleString()}</p>
-              <p>Arrival: {new Date(booking.arrivalTime).toLocaleString()}</p>
-              <p>Price: ₹{booking.price}</p>
-              {booking.seatNumber === "NA" ? (
-                <>
-                  <button onClick={() => fetchSeats(booking.flightId)} className={styles.button}>Check-in</button>
-                  {selectedFlight === booking.flightId && (
-                    <div className={styles.seatSelection}>
-                      <h3>Select a Seat</h3>
-                      <div className={styles.seatGrid}>
-                        {seats.map((seat) => (
-                          <button
-                            key={seat.seatNumber}
-                            disabled={!seat.isAvailable}
-                            onClick={() => setSelectedSeat(seat.seatNumber)}
-                            className={`${styles.seatButton} ${selectedSeat === seat.seatNumber ? styles.selectedSeat : ''}`}
-                          >
-                            {seat.seatNumber}
-                          </button>
-                        ))}
-                      </div>
-                      <button onClick={() => handleCheckIn(booking.flightId, booking.bookingId)} className={styles.button}>Confirm Check-in</button>
-                    </div>
-                  )}
-                </>
-              ) : (
-                <p>Seat Number: {booking.seatNumber}</p>
-              )}
-            </li>
-          ))}
-        </ul>
       ) : (
-        <p>No bookings found.</p>
+        <div className={styles.horizontalLayout}>
+          <section className={styles.section}>
+            <h2 className={styles.sectionTitle}>Upcoming Trips</h2>
+            {upcomingTrips.length > 0 ? (
+              <ul className={styles.bookingList}>
+                {upcomingTrips.map((booking) => (
+                  <li key={booking.flightId} className={styles.bookingItem}>
+                    <p><strong>Flight Number:</strong> {booking.flightNumber}</p>
+                    <p><strong>From:</strong> {booking.departureAirportName} → <strong>To:</strong> {booking.arrivalAirportName}</p>
+                    <p><strong>Departure:</strong> {new Date(booking.departureTime).toLocaleString()}</p>
+                    <p><strong>Arrival:</strong> {new Date(booking.arrivalTime).toLocaleString()}</p>
+                    <p><strong>Price:</strong> ₹{booking.price}</p>
+                    {booking.seatNumber === "NA" ? (
+                      <>
+                        <button onClick={() => fetchSeats(booking.flightId)} className={styles.button}>Check-in</button>
+                        {selectedFlight === booking.flightId && (
+                          <div className={styles.seatSelection}>
+                            <h3>Select a Seat</h3>
+                            <div className={styles.seatGrid}>
+                              {seats.map((seat) => (
+                                <button
+                                  key={seat.seatNumber}
+                                  disabled={!seat.isAvailable}
+                                  onClick={() => setSelectedSeat(seat.seatNumber)}
+                                  className={`${styles.seatButton} ${selectedSeat === seat.seatNumber ? styles.selectedSeat : ''}`}
+                                >
+                                  {seat.seatNumber}
+                                </button>
+                              ))}
+                            </div>
+                            <button onClick={() => handleCheckIn(booking.flightId, booking.bookingId)} className={styles.button}>Confirm Check-in</button>
+                          </div>
+                        )}
+                      </>
+                    ) : (
+                      <p><strong>Seat Number:</strong> {booking.seatNumber}</p>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>No upcoming trips found.</p>
+            )}
+          </section>
+
+          <section className={styles.section}>
+            <h2 className={styles.sectionTitle}>Past Trips</h2>
+            {pastTrips.length > 0 ? (
+              <ul className={styles.bookingList}>
+                {pastTrips.map((booking) => (
+                  <li key={booking.flightId} className={styles.bookingItem}>
+                    <p><strong>Flight Number:</strong> {booking.flightNumber}</p>
+                    <p><strong>From:</strong> {booking.departureAirportName} → <strong>To:</strong> {booking.arrivalAirportName}</p>
+                    <p><strong>Departure:</strong> {new Date(booking.departureTime).toLocaleString()}</p>
+                    <p><strong>Arrival:</strong> {new Date(booking.arrivalTime).toLocaleString()}</p>
+                    <p><strong>Price:</strong> ₹{booking.price}</p>
+                    <p><strong>Seat Number:</strong> {booking.seatNumber}</p>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>No past trips found.</p>
+            )}
+          </section>
+        </div>
       )}
-      <button onClick={() => router.push("/search")} className={styles.button}>Search More Flights</button>
-      <Link href="/dashboard">Back to Dashboard</Link>
+      <div className={styles.actions}>
+        <button onClick={() => router.push("/search")} className={styles.button}>Search More Flights</button>
+        <Link href="/dashboard" className={styles.button}>Back to Dashboard</Link>
+      </div>
     </div>
   );
 }

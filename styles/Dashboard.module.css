@@ -1,61 +1,117 @@
 .container {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  border: 1px solid #ddd;
+  background-color: #f9f9f900;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  background-color: rgba(1, 38, 39, 0.468);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 .title {
-  text-align: center;
-  margin-bottom: 20px;
+  font-size: 2.5em;
+  color: #333;
 }
 
-.userDetails {
-  text-align: center;
+.subtitle {
+  font-size: 1.2em;
+  color: #1c1c1c;
 }
 
-.userDetails p {
-  margin: 10px 0;
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 
-.button {
-  padding: 10px;
-  background-color: #0070f3;
+.userSection, .navigationSection, .summarySection {
+  background-color: #ffffffa5;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.sectionTitle {
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  color: #0070f3;
+}
+
+.logoutButton {
+  padding: 10px 20px;
+  background-color: #ff4b2b;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin-top: 10px;
 }
 
-.button:hover {
-  background-color: #005bb5;
+.logoutButton:hover {
+  background-color: #d43f1a;
 }
 
-.nav {
-  margin-top: 20px;
+.navCards {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
 }
 
-.navList {
-  list-style: none;
-  padding: 0;
+.navCard {
+  flex: 1;
+  padding: 20px;
+  background-color: #f0f8ff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.navCard h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  color: cadetblue;
+}
+
+.navCard p {
+  color: #555;
+}
+
+.summaryCards {
+  display: flex;
+  gap: 20px;
+}
+
+.summaryCard {
+  flex: 1;
+  padding: 20px;
+  background-color: #e6f7ff;
+  border: 1px solid #b3e5fc;
+  border-radius: 8px;
   text-align: center;
 }
 
-.navItem {
-  display: inline;
-  margin: 0 10px;
+.summaryCard h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
 }
 
-.navItem a {
-  text-decoration: none;
-  color: #f34d00;
-  background-color: aquamarine;
+.summaryCard p {
+  font-size: 1em;
+  color: #333;
 }
 
-.navItem a:hover {
-  text-decoration: underline;
+.errorMessage {
+  text-align: center;
+  color: red;
+  font-size: 1.2em;
 }

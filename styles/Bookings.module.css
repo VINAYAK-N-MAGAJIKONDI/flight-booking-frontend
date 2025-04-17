@@ -1,39 +1,41 @@
-/* Global Styles */
-body {
-  font-family: 'Poppins', sans-serif;
-  background: url('../screenshots/896981.jpg') no-repeat center center/cover;
-  color: #fff;
-  margin: 0;
-  padding: 0;
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
-
-/* Container */
 .container {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  background: rgba(6, 92, 102, 0.427);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(10px);
-  animation: fadeIn 1s ease-in-out;
+  background: #f9f9f900;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Title */
 .title {
   text-align: center;
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 2.5em;
   margin-bottom: 20px;
-  animation: slideInDown 1s ease-in-out;
+  color: #333;
 }
 
-/* Booking List */
+.horizontalLayout {
+  display: flex;
+  gap: 20px;
+  flex-direction: column ;
+}
+
+.section {
+  flex: 2;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  
+
+}
+
+.sectionTitle {
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  color: #0070f3;
+}
+
 .bookingList {
   list-style: none;
   padding: 0;
@@ -41,38 +43,33 @@ body {
 
 .bookingItem {
   padding: 15px;
-  background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 6px;
-  margin-bottom: 10px;
-  transition: transform 0.3s ease-in-out, background 0.3s;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-.bookingItem:hover {
-  transform: scale(1.02);
-  background: rgba(255, 255, 255, 0.3);
+.actions {
+  text-align: center;
+  margin-top: 20px;
 }
 
-/* Button */
 .button {
-  display: inline-block;
-  padding: 12px 20px;
-  background: #ff4b2b;
+  padding: 10px 20px;
+  background: #0070f3;
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 4px;
   cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  transition: background 0.3s, transform 0.2s;
+  font-size: 1em;
+  margin: 5px;
 }
 
 .button:hover {
-  background: #ff3a1a;
-  transform: scale(1.05);
+  background: #005bb5;
 }
 
-/* Seat Selection */
 .seatSelection {
   margin-top: 20px;
 }
@@ -81,65 +78,21 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  justify-content: center;
-  margin-top: 10px;
 }
 
 .seatButton {
-  padding: 12px;
-  background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 6px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background 0.3s ease-in-out, transform 0.2s;
-}
-
-.seatButton:hover {
-  background: rgba(255, 255, 255, 0.4);
-  transform: scale(1.1);
 }
 
 .seatButton:disabled {
-  background: #555;
+  background: #f0f0f0;
   cursor: not-allowed;
 }
 
 .selectedSeat {
-  background: #00b4db;
+  background: #0070f3;
   color: white;
-  font-weight: bold;
-  transform: scale(1.1);
-}
-
-/* Message */
-.message {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 18px;
-  font-weight: bold;
-  color: #ffcc00;
-  animation: fadeIn 1s ease-in-out;
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }

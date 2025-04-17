@@ -1,4 +1,3 @@
-// pages/dashboard.js
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
@@ -57,25 +56,43 @@ export default function Dashboard() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Dashboard</h1>
+      <header className={styles.header}>
+        <h1 className={styles.title}>Welcome to Your Dashboard</h1>
+        <p className={styles.subtitle}>Manage your bookings, search for flights, and more!</p>
+      </header>
+
       {user ? (
-        <div className={styles.userDetails}>
-          <p>Welcome, {user.name}</p>
-          <p>Email: {user.email}</p>
-          <button onClick={handleLogout} className={styles.button}>Logout</button>
-          <nav className={styles.nav}>
-            <ul className={styles.navList}>
-              <li className={styles.navItem}>
-                <Link href="/search">Search Flights</Link>
-              </li>
-              <li className={styles.navItem}>
-                <Link href="/mybookings">My Bookings</Link>
-              </li>
-            </ul>
-          </nav>
+        <div className={styles.content}>
+          <section className={styles.userSection}>
+            <h2 className={styles.sectionTitle}>User Information</h2>
+            <p><strong>Name:</strong> {user.name}</p>
+            <p><strong>Email:</strong> {user.email}</p>
+            <button onClick={handleLogout} className={styles.logoutButton}>Logout</button>
+          </section>
+
+          <section className={styles.navigationSection}>
+            <h2 className={styles.sectionTitle}>Quick Links</h2>
+            <div className={styles.navCards}>
+              <Link href="/search">
+                <div className={styles.navCard}>
+                  <h3>Search Flights</h3>
+                  <p>Find and book your next flight.</p>
+                </div>
+              </Link>
+              <Link href="/mybookings">
+                <div className={styles.navCard}>
+                  <h3>My Bookings</h3>
+                  <p>View and manage your flight bookings.</p>
+                </div>
+              </Link>
+
+            </div>
+          </section>
+
+          
         </div>
       ) : (
-        <p>Unauthorized access. Redirecting...</p>
+        <p className={styles.errorMessage}>Unauthorized access. Redirecting...</p>
       )}
     </div>
   );
