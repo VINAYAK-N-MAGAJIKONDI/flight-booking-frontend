@@ -30,6 +30,7 @@ export default function MyBookings() {
         });
         const data = await response.json();
         if (response.ok) {
+
           const currentDate = new Date();
           const upcoming = data.filter(
             (booking) => new Date(booking.departureTime) > currentDate
@@ -111,7 +112,7 @@ export default function MyBookings() {
                 {upcomingTrips.map((booking) => (
                   <li key={booking.flightId} className={styles.bookingItem}>
                     <p><strong>Flight Number:</strong> {booking.flightNumber}</p>
-                    <p><strong>From:</strong> {booking.departureAirportName} → <strong>To:</strong> {booking.arrivalAirportName}</p>
+                    <p><strong>From:</strong> {booking.departureAirport} → <strong>To:</strong> {booking.arrivalAirport}</p>
                     <p><strong>Departure:</strong> {new Date(booking.departureTime).toLocaleString()}</p>
                     <p><strong>Arrival:</strong> {new Date(booking.arrivalTime).toLocaleString()}</p>
                     <p><strong>Price:</strong> ₹{booking.price}</p>
@@ -154,8 +155,8 @@ export default function MyBookings() {
               <ul className={styles.bookingList}>
                 {pastTrips.map((booking) => (
                   <li key={booking.flightId} className={styles.bookingItem}>
-                    <p><strong>Flight Number:</strong> {booking.flightNumber}</p>
-                    <p><strong>From:</strong> {booking.departureAirportName} → <strong>To:</strong> {booking.arrivalAirportName}</p>
+                    <p><strong>Flight Number:</strong> {booking.flightNumber}</p> 
+                    <p><strong>From:</strong> {booking.departureAirport} → <strong>To:</strong> {booking.arrivalAirport}</p>
                     <p><strong>Departure:</strong> {new Date(booking.departureTime).toLocaleString()}</p>
                     <p><strong>Arrival:</strong> {new Date(booking.arrivalTime).toLocaleString()}</p>
                     <p><strong>Price:</strong> ₹{booking.price}</p>
